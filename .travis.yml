@@ -1,5 +1,6 @@
 language: generic
 sudo: required #give super access
+
 services: 
   - docker # copy of docker in travis
 
@@ -11,13 +12,12 @@ script: #series of commands that run when tested. It'll run test until one of th
  
 deploy: #tells Travis how to deploy this
   provider: elasticbeanstalk #has a list of available providers/host
-  region: "us-east-1"
-  app: "docker-practice"
-  env: "DockerPractice-env" 
-  bucket_name: "elasticbeanstalk-us-east-1-156760431653" # Travis deploys code base, take all files in GitHub and zip it up and copy them into an S3 Bucket.
-  bucket_path: "docker-practice"
+  region: 'us-east-1'
+  app: 'docker-practice'
+  env: 'DockerPractice-env' 
+  bucket_name: 'elasticbeanstalk-us-east-1-156760431653' # Travis deploys code base, take all files in GitHub and zip it up and copy them into an S3 Bucket.
+  bucket_path: 'docker-practice'
   on: 
     branch: master #anytime master gets new code that'll deploy up to AWS
   access_key_id: $AWS_ACCESS_KEY #coming from Travis CI's Environment Variables
-  secret_access_key:
-    secure: $AWS_SECRET_KEY #coming from Travis CI's Environment Variables
+  secret_access_key: $AWS_SECRET_KEY #coming from Travis CI's Environment Variables

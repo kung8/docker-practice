@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# since this is being added to docker-compose.yml for the volumes we could get away with removing this from this file. 
+# However since you may decide to remove the docker-compose.yml file later or you may want to use this file for inspiration for production dockerfile so you will need this instruction to copy your source code. 
+COPY . .
+
+CMD ["npm", "run", "start"]

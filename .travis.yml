@@ -1,0 +1,11 @@
+language: generic
+sudo: required #give super access
+services: 
+  - docker # copy of docker in travis
+
+before_install: #series of commands run before install or deploy/run tests
+  - docker build -t kung8/docker-practice -f Dockerfile.dev . #force to use this dockerfile instead of Dockerfile; tagging the image
+
+script: #series of commands that run when tested. It'll run test until one of these breaks.
+  - docker run -e CI=true kung8/docker-practice npm run test
+ 

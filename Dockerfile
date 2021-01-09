@@ -1,9 +1,9 @@
 FROM node:alpine 
 # as builder (this doesn't work on AWS)
 WORKDIR '/app'
-COPY package.json ./
+COPY package.json .
 RUN npm install
-COPY ./ ./
+COPY . .
 RUN npm run build
 
 FROM nginx
